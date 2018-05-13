@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Imperative Clock</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    // вывод показаний часов каждую секунду;
+    setInterval(logClockTime, 1000);
+
+    function logClockTime() {
+      // Получение строки паказания часов в гражданском формате
+      var time = getClockTime();
+
+      // Очистка показаний консоди и вывод показания часов
+      console.clear();
+      console.log(time);
+    }
+
+    function getClockTime() {
+      // Получение текущего времени
+      var date = new Date();
+      var time = "";
+
+      // Выстраивание последовательности показания часов
+      var time = {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+        ampm: "AM"
+      }
+
+      // Преобразование показания времени в гражданский формат
+      if (time.hours == 12) {
+        time.ampm = "PM";
+      } else if (time.hours > 12) {
+        time.ampm = "PM";
+        time.hours -= 12;
+      }
+
+      // Подстановка 0 к показанию часов, чтобы получилась пара цифр
+      if (time.hours < 10) {
+        time.hours = "0" + time.hours;
+      }
+
+      // Подстановка 0 к показанию минут, чтобы получилась пара цифр
+      if (time.minutes < 10) {
+        time.minutes = "0" + time.minutes;
+      }
+
+      // Подстановка 0 к показанию секунд, чтобы получилась пара цифр
+      if (time.seconds < 10) {
+        time.seconds = "0" + time.seconds;
+      }
+
+      // Придание показаниям часов строки Формата "hh:mm:ss tt"
+      return time.hours + ":"
+           + time.minutes + ":"
+           + time.seconds + " "
+           + time.ampm;
+    }
+
+  </script>
+</body>
+</html>
